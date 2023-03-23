@@ -1,23 +1,73 @@
-AirBnB_clone
-Project completed for ALX Software Engineering School. 
+# The AirBnB Clone Project
+![AirBnB Logo](https://www.pngitem.com/pimgs/m/132-1322125_transparent-background-airbnb-logo-hd-png-download.png)
 
-AirBnB clone - The console
-The goal of the project is to deploy on a server a simple copy of the AirBnB website. It won’t implement all the features, only some of them to cover all fundamental concepts of the higher level programming track.
+## Project Description
+This is the first part of the AirBnB clone project where we worked on the backend of the project whiles interfacing it with a console application with the help of the cmd module in python.
 
-First step: Write a command interpreter to manage your AirBnB objects.
-This first step is very important because it will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end in
+Data (python objects) generated are stored in a json file and can be accessed with the help of the json module in python
 
-What’s a command interpreter?
-Do you remember the Shell? It’s exactly the same but limited to a specific use-case. In our case, we want to be able to manage the objects of our project:
+## Description of the command interpreter:
+The interface of the application is just like the Bash shell except that this has a limited number of accepted commands that were solely defined for the purposes of the usage of the AirBnB website.
 
-Create a new object (ex: a new User or a new Place)
-Retrieve an object from a file, a database etc…
-Do operations on objects (count, compute stats, etc…)
-Update attributes of an object
-Destroy an object
-Execution
-Your could work like this in interactive mode:
+This command line interpreter  serves as the frontend of the web app where users can interact with the backend which was developed with python OOP programming.
 
+Some of the commands available are:
+- show
+- create
+- update
+- destroy
+- count
+
+And as part of the implementation of the command line interpreter coupled with the backend and file storage system, the folowing actions can be performed:
+-   Creating new objects (ex: a new User or a new Place)
+-   Retrieving an object from a file, a database etc…
+-   Doing operations on objects (count, compute stats, etc…)
+-   Updating attributes of an object
+-   Destroying an object
+
+## How to start it
+These instructions will get you a copy of the project up and running on your local machine (Linux distro) for development and testing purposes.
+
+## Installing
+
+You will need to clone the repository of the project from Github. This will contain the simple shell program and all of its dependencies.
+
+```
+git clone https://github.com/jzamora5/AirBnB_clone.git
+```
+After cloning the repository you will have a folder called AirBnB_clone. In here there will be several files that allow the program to work.
+
+> /console.py : The main executable of the project, the command interpreter.
+>
+> models/engine/file_storage.py: Class that serializes instances to a JSON file and deserializes JSON file to instances
+> 
+> models/__ init __.py:  A unique `FileStorage` instance for the application
+> 
+> models/base_model.py: Class that defines all common attributes/methods for other classes.
+> 
+> models/user.py: User class that inherits from BaseModel
+> 
+>models/state.py: State class that inherits from BaseModel
+>
+>models/city.py: City class that inherits from BaseModel
+>
+>models/amenity.py: Amenity class that inherits from BaseModel
+>
+>models/place.py: Place class that inherits from BaseModel
+>
+>models/review.py: Review class that inherits from BaseModel
+
+
+
+## How to use it
+It can work in two different modes:
+
+
+**Interactive** and **Non-interactive**.
+
+In **Interactive mode**, the console will display a prompt (hbnb) indicating that the user can write and execute a command. After the command is run, the prompt will appear again a wait for a new command. This can go indefinitely as long as the user does not exit the program.
+
+```
 $ ./console.py
 (hbnb) help
 
@@ -29,8 +79,12 @@ EOF  help  quit
 (hbnb) 
 (hbnb) quit
 $
-But also in non-interactive mode: (like the Shell project in C)
+```
 
+In **Non-interactive mode**, the shell will need to be run with a command input piped into its execution so that the command is run as soon as the Shell starts. In this mode no prompt will appear, and no further input will be expected from the user.
+
+
+```
 $ echo "help" | ./console.py
 (hbnb)
 
@@ -50,54 +104,71 @@ Documented commands (type help <topic>):
 EOF  help  quit
 (hbnb) 
 $
-Commands:
-create - create an object
-show - show an object (based on id)
-destroy - destroy an object
-all - show all objects, of one type or all types
-update - Updates an instance based on the class name and id
-quit/EOF - quit the console
-help - see descriptions of commands
-To start console type in shell
+```
 
-AirBnB_clone$ ./console.py
-(hbnb) 
-Create
-To create an object use format "create " ex:
+## Format of Command Input
 
+In order to give commands to the console, these will need to be piped through an echo in case of  **Non-interactive mode**.
+
+In  **Interactive Mode**  the commands will need to be written with a keyboard when the prompt appears and will be recognized when an enter key is pressed (new line). As soon as this happens, the console will attempt to execute the command through several means or will show an error message if the command didn't run successfully. In this mode, the console can be exited using the **CTRL + D** combination,  **CTRL + C**, or the command **quit** or **EOF**.
+
+## Arguments
+
+Most commands have several options or arguments that can be used when executing the program. In order for the Shell to recognize those parameters, the user must separate everything with spaces.
+
+Example:
+
+```
+
+user@ubuntu:~/AirBnB$ ./console.py
 (hbnb) create BaseModel
-Show
-To show an instance based on the class name and id. Ex:
+49faff9a-6318-451f-87b6-910505c55907
+user@ubuntu:~/AirBnB$ ./console.py
 
-(hbnb) show BaseModel 1234-1234-1234.
-Destroy
-To Delete an instance of an object use "destroy id". Ex:
+```
 
-(hbnb) destroy BaseModel 1234-1234-1234.
-All
-all or all Ex:
+or
 
-(hbnb) all or all State
-Update
-Updates an instance based on the class name and id:
+```
+user@ubuntu:~/AirBnB$ ./console.py $ echo "create BaseModel" | ./console.py
+(hbnb)
+e37ebcd3-f8e1-4c1f-8095-7a019070b1fa
+(hbnb)
+user@ubuntu:~/AirBnB$ ./console.py
+```
 
-(hbnb) update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com"
-Quit
-quit or EOF
+## Available commands and what they do
 
-Help
-help or help Ex:
+The recognizable commands by the interpreter are the following:
 
-(hbnb) help or help quit
- Defines quit option
-(hbnb) 
-Supported classes:
-BaseModel
-User
-State
-City
-Amenity
-Place
-Review
-Authors
-Osinachi Basil - basilosinachi1@gmail.com
+|Command| Description |
+|--|--|
+| **quit or EOF** | Exits the program |
+| **Usage** | By itself |
+| **-----** | **-----** |
+| **help** | Provides a text describing how to use a command.  |
+| **Usage** | By itself --or-- **help <command\>** |
+| **-----** | **-----** |
+| **create** | Creates a new instance of a valid `Class`, saves it (to the JSON file) and prints the `id`.  Valid classes are: BaseModel, User, State, City, Amenity, Place, Review. |
+| **Usage** | **create <class name\>**|
+| **-----** | **-----** |
+| **show** | Prints the string representation of an instance based on the class name and `id`  |
+| **Usage** | **show <class name\> <id\>** --or-- **<class name\>.show(<id\>)**|
+| **-----** | **-----** |
+| **destroy** | Deletes an instance based on the class name and `id` (saves the change into a JSON file).  |
+| **Usage** | **destroy <class name\> <id\>** --or-- **<class name>.destroy(<id>)** |
+| **-----** | **-----** |
+| **all** | Prints all string representation of all instances based or not on the class name.  |
+| **Usage** | By itself or **all <class name\>** --or-- **<class name\>.all()** |
+| **-----** | **-----** |
+| **update** | Updates an instance based on the class name and `id` by adding or updating attribute (saves the changes into a JSON file).  |
+| **Usage** | **update <class name\> <id\> <attribute name\> "<attribute value\>"** ---or--- **<class name\>.update(<id\>, <attribute name\>, <attribute value\>)** --or-- **<class name\>.update(<id\>, <dictionary representation\>)**|
+| **-----** | **-----** |
+| **count** | Retrieve the number of instances of a class.  |
+| **Usage** | **<class name\>.count()** |
+
+## Authors
+
+Osinachi Basil
+ 
+Isaac Attah
